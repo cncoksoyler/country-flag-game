@@ -1,45 +1,46 @@
 <template>
-  <app-layout title="Dispatch">
-    <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Dispatch
-      </h2>
-    </template>
+  <div class="countries">
+    <h1>This is an about page</h1>
 
-    <div class="py-12">
-      <div v-for="country in countries" :key="country.name">
-        <!-- {{ country.name.common }} -->
-        <div class="flex flex-row inline-block justify-center">
-          <div class="flex flex-col col-span-6 inline-block justify-center m-5">
-            <img :src="country.flags.png" :alt="country.name.common" />
-          </div>
-          <div
-            class="flex flex-col col-span-6 inline-block justify-center ml-5"
-          >
-            <input type="text" v-model="dummy.country" />
-          </div>
-        </div>
+    <div v-for="country in countries" :key="country.name">
+      <hr />
+
+      <div class="flex flex-col col-span-6 inline-block justify-center m-5">
+        <img :src="country.flags.png" :alt="country.name.common" />
+      </div>
+      <br />
+      
+      <div class="flex flex-col col-span-6 inline-block justify-center ml-5">
+        <input type="text" v-model="dummy"/>
+     
       </div>
     </div>
-  </app-layout>
+  </div>
 </template>
  <script>
-import { defineComponent } from "vue";
-
 export default {
   data() {
     return {
       countries: [],
-      dummy: [""],
+      dummy: [],         
     };
   },
-  components: {
-    AppLayout,
-  },
+  components: {},
   beforeMount() {
     fetch("https://restcountries.com/v3.1/subregion/europe")
       .then((response) => response.json())
       .then((data) => (this.countries = data));
   },
+
+  
 };
 </script>
+<style>
+img {
+  border: solid 1px black;
+  border-radius: 3px;
+}
+input {
+  margin-bottom: 5px;
+}
+</style>
