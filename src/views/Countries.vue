@@ -18,6 +18,8 @@
   </div>
 </template>
  <script>
+
+
 export default {
   data() {
     return {
@@ -31,7 +33,7 @@ export default {
       .then((response) => response.json())
       .then((data) => (this.countries = data));
   },
-
+  
   
 };
 </script>
